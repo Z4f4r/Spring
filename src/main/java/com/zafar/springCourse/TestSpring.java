@@ -10,24 +10,22 @@ public class TestSpring {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
         );
-
-//        Music music = context.getBean("musicBean", Music.class);
-//        MusicPlayer musicPlayer = new MusicPlayer(music);
-
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
-
-        // checkin' prototype scope (scope="prototype" -> false, scope="singleton"(default) -> true)
-        System.out.println(musicPlayer == musicPlayer1);
-
-
-
-
-//        List<Music> list = musicPlayer.getMusicList();
+        ClassicalMusic classicalMusic = context.getBean("musicBean", ClassicalMusic.class);
+        System.out.println(classicalMusic.getSong());
+//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
 //
-//        for (Music music: list) {
-//            System.out.println(music.getSong());
-//        }
-//        context.close();
+//        // checkin' prototype scope (scope="prototype" -> false, scope="singleton"(default) -> true)
+//        System.out.println(musicPlayer == musicPlayer1);
+//
+//
+//
+//
+////        List<Music> list = musicPlayer.getMusicList();
+////
+////        for (Music music: list) {
+////            System.out.println(music.getSong());
+////        }
+        context.close();
     }
 }

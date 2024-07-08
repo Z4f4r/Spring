@@ -15,12 +15,19 @@ public class TestSpring {
 //        MusicPlayer musicPlayer = new MusicPlayer(music);
 
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
 
-        List<Music> list = musicPlayer.getMusicList();
+        // checkin' prototype scope (scope="prototype" -> false, scope="singleton"(default) -> true)
+        System.out.println(musicPlayer == musicPlayer1);
 
-        for (Music music: list) {
-            System.out.println(music.getSong());
-        }
-        context.close();
+
+
+
+//        List<Music> list = musicPlayer.getMusicList();
+//
+//        for (Music music: list) {
+//            System.out.println(music.getSong());
+//        }
+//        context.close();
     }
 }

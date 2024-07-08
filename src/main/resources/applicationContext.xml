@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
-    <bean id="musicBean"
+
+    <bean id="classicalMusicBean"
+          class="com.zafar.springCourse.ClassicalMusic">
+    </bean>
+
+    <bean id="rapMusicBean"
           class="com.zafar.springCourse.RapMusic">
+    </bean>
+
+    <bean id="rockMusicBean"
+          class="com.zafar.springCourse.RockMusic">
     </bean>
 
     <bean id="musicPlayer"
           class="com.zafar.springCourse.MusicPlayer">
-        <property name="music" ref="musicBean"/>
-
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
+        <property name="musicList" ref="musicListBean"/>
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
     </bean>
+
+    <util:list id="musicListBean" value-type="com.zafar.springCourse.Music">
+        <ref bean="rapMusicBean"/>
+        <ref bean="rockMusicBean"/>
+        <ref bean="classicalMusicBean"/>
+    </util:list>
 
 </beans>

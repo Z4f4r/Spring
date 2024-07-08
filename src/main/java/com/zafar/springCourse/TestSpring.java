@@ -2,6 +2,9 @@ package com.zafar.springCourse;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
@@ -13,11 +16,11 @@ public class TestSpring {
 
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
-        musicPlayer.playMusic();
+        List<Music> list = musicPlayer.getMusicList();
 
-        System.out.println(musicPlayer.getName());
-        System.out.println(musicPlayer.getVolume());
-
+        for (Music music: list) {
+            System.out.println(music.getSong());
+        }
         context.close();
     }
 }

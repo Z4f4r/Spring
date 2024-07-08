@@ -1,5 +1,8 @@
 package com.zafar.springCourse;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ClassicalMusic implements Music {
 
     private ClassicalMusic() {
